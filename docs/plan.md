@@ -21,11 +21,11 @@ Week | What will be done
 Week | What will be done
 ---- | ---------------------------------------------------------------------
 1    | Chose the subject, the JS framework, find the dataset and create scripts (ruby)
-2    | Get to know Ember
-3    | Get to know Ember
+2    | Get to know EmberJS
+3    | Get to know EmberJS
 4    | Create the visualization of the data
 5    | Create the visualization of the data
 6    | Create the visualization of the data
 7    | Create the visualization of the data
-8    | Create the documentation
+8    | Create the documentation for EmberJS
 9    | Add finishing touches to the project and documentation
