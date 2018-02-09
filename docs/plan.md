@@ -9,8 +9,8 @@ Week | What will be done
 1    | Chose the project, the PHP framework, write up the plan (RIA2 & PRW3) and get to now F3
 2    | Get to know F3, prepare the presentation
 3    | Get to know F3, prepare the presentation
-4    | Presentation of F3, define the routes
-5    | Start creating the API
+4    | Get to know F3 and start creating the API, prepare the presentation
+5    | Presentation of F3, define the routes
 6    | Create the API
 7    | Create the API
 8    | Create the API, fill out README files
