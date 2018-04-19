@@ -1,8 +1,7 @@
 <?php
 namespace Controllers {
-    class VehicleController {
+    class VehicleController extends BaseController {
         public static function index() {
-            // echo '[{"firstname":"Jack","lastname":"Thumb","age":25},{"firstname":"Struan","lastname":"Forsyth","age":21}]';
             $response = \Web::instance()->request('http://www.jurassictest.ch/GR/api/vehicles', array('method' => 'GET'));
             echo $response['body'];
         }
@@ -19,16 +18,36 @@ namespace Controllers {
             }
         }
 
-        public static function setVehicle() {
-            echo json_encode(json_decode('{"message": "Set Vehicle"}'));
+        public static function setVehicle($f3) {
+            $uid = $f3->get('PARAMS.UID');
+            $vehicleID = (int)$f3->get('PARAMS.id');
+            $mapper = parent::getMapper($uid);
+            $vehicles = $mapper->vehicles;
+            if (!in_array($vehicleID, $vehicles)){
+                array_push($vehicles, $vehicleID);
+                $mapper->vehicles = $vehicles;    
+                $mapper->save();
+            }
         }
 
-        public static function removeMultiVehicles() {
-            echo json_encode(json_decode('{"message": "Remove Multi Vehicles"}'));
+        public static function removeMultiVehicles($f3) {
+            $uid = $f3->get('PARAMS.UID');
+            $mapper = parent::getMapper($uid);
+            $mapper->vehicles = array();
+            $mapper->save();
         }
 
-        public static function removeVehicle() {
-            echo json_encode(json_decode('{"message": "Remove Vehicle"}'));
+        public static function removeVehicle($f3) {
+            $uid = $f3->get('PARAMS.UID');
+            $vehicleID = (int)$f3->get('PARAMS.id');
+            $mapper = parent::getMapper($uid);
+            $vehicles = $mapper->vehicles;
+            $key = array_search($vehicleID, $vehicles);
+            if ($key !== false) {
+                unset($vehicles[$key]);
+                $mapper->vehicles = $vehicles;    
+                $mapper->save();
+            }
         }
     }
 }
