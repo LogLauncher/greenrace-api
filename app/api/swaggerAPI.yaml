@@ -1,0 +1,270 @@
+swagger: "2.0"
+info:
+  description: ""
+  version: "1.0.0"
+  title: "GreenRace API"
+basePath: "/api/v1"
+tags:
+- name: "UID"
+- name: "vehicles"
+- name: "steps"
+- name: "options"
+paths:
+  /UID:
+    get:
+      tags:
+      - "UID"
+      summary: "Generate a UID"
+      operationId: "generateUID"
+      produces: 
+      - "application/json"
+      responses:
+        200:
+          description: "successful operation"
+  /{UID}/run:
+    get:
+      tags:
+      - "UID"
+      summary: "Run the calculations"
+      operationId: "runCalculations"
+      parameters: 
+      - name: "UID"
+        in: "path"
+        description: "UID of the user"
+        required: true
+        type: "string"
+        format: "string"
+      produces: 
+      - "application/json"
+      responses:
+        200:
+          description: "successful operation"
+  /vehicles:
+    get:
+      tags:
+      - "vehicles"
+      summary: "Finds all the vehicles"
+      operationId: "getVehicles"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "successful operation"
+  /vehicles/{vehicleId}:
+    get:
+      tags:
+      - "vehicles"
+      summary: "Finds one vehicle"
+      operationId: "getVehicle"
+      parameters: 
+      - name: "vehicleId"
+        in: "path"
+        description: "ID of the vehicle"
+        required: true
+        type: "integer"
+        format: "int64"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "successful operation"
+  /{UID}/vehicles/{vehicleId}:
+    post:
+      tags:
+      - "vehicles"
+      summary: "Sets the vehicle to use in a run"
+      operationId: "setVehicle"
+      parameters: 
+      - name: "UID"
+        in: "path"
+        description: "UID of the user"
+        required: true
+        type: "string"
+        format: "string"
+      - name: "vehicleId"
+        in: "path"
+        description: "ID of the vehicle"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        200:
+          description: "successful operation"
+        400:
+          description: "Invalid UID or vehicleId value"
+    delete:
+      tags:
+      - "vehicles"
+      summary: "Removes the vehicle to use in a run"
+      operationId: "removeVehicle"
+      parameters: 
+      - name: "UID"
+        in: "path"
+        description: "UID of the user"
+        required: true
+        type: "string"
+      - name: "vehicleId"
+        in: "path"
+        description: "ID of the vehicle"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        200:
+          description: "successful operation"
+        400:
+          description: "Invalid UID or vehicleId value"
+  /{UID}/vehicles:
+    delete:
+      tags:
+      - "vehicles"
+      summary: "Removes the vehicles to use in a run"
+      operationId: "removeVehicles"
+      parameters: 
+      - name: "UID"
+        in: "path"
+        description: "UID of the user"
+        required: true
+        type: "string"
+        format: "string"
+      responses:
+        200:
+          description: "successful operation"
+        400:
+          description: "Invalid UID value"
+  /{UID}/steps:
+    get:
+      tags:
+      - "steps"
+      summary: "Get the steps in a run"
+      operationId: "getSteps"
+      parameters: 
+      - name: "UID"
+        in: "path"
+        description: "UID of the user"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "successful operation"
+        400:
+          description: "Invalid UID value"
+    post:
+      tags:
+      - "steps"
+      summary: "Sets the step to use in a run"
+      operationId: "setStep"
+      parameters: 
+      - name: "UID"
+        in: "path"
+        description: "UID of the user"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "successful operation"
+        400:
+          description: "Invalid UID value"
+    delete:
+      tags:
+      - "steps"
+      summary: "Removes the step in a run"
+      operationId: "removeSteps"
+      parameters: 
+      - name: "UID"
+        in: "path"
+        description: "UID of the user"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "successful operation"
+        400:
+          description: "Invalid UID value"
+  /{UID}/steps/{stepId}:
+    delete:
+      tags:
+      - "steps"
+      summary: "Removes the step in a run"
+      operationId: "removeStep"
+      parameters: 
+      - name: "UID"
+        in: "path"
+        description: "UID of the user"
+        required: true
+        type: "string"
+      - name: "stepId"
+        in: "path"
+        description: "ID of the step"
+        required: true
+        type: "integer"
+      responses:
+        200:
+          description: "successful operation"
+        400:
+          description: "Invalid UID value"
+  /{UID}/options:
+    get:
+      tags:
+      - "options"
+      summary: "Finds the user options"
+      operationId: "getOptions"
+      parameters: 
+      - name: "UID"
+        in: "path"
+        description: "UID of the user"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "successful operation"
+        400:
+          description: "Invalid UID value"
+    put:
+      tags:
+      - "options"
+      summary: "Updates the user options"
+      operationId: "updateOptions"
+      parameters: 
+      - name: "UID"
+        in: "path"
+        description: "UID of the user"
+        required: true
+        type: "string"
+      - name: "body"
+        in: "query"
+        description: "Options name with the new value"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "successful operation"
+        400:
+          description: "Invalid UID value"
+    delete:
+      tags:
+      - "options"
+      summary: "Reset the user options"
+      operationId: "resetOptions"
+      parameters: 
+      - name: "UID"
+        in: "path"
+        description: "UID of the user"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "successful operation"
+        400:
+          description: "Invalid UID value"
+definitions:
+  ApiResponse:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        format: "int32"
+      type:
+        type: "string"
+      message:
+        type: "string"
